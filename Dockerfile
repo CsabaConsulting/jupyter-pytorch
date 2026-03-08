@@ -16,6 +16,10 @@ RUN apt install -y sudo && \
     echo "jovyan ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/jovyan && \
     chmod 0440 /etc/sudoers.d/jovyan
 
+ENV PATH=/usr/local/cuda-12.8/bin:${PATH}
+ENV LD_LIBRARY_PATH=/usr/local/cuda-12.8/lib64:${LD_LIBRARY_PATH}
+ENV CUDA_HOME=/usr/local/cuda-12.8
+
 # Switch back to regular user before runtime
 USER ${NB_UID}
 WORKDIR /home/jovyan
