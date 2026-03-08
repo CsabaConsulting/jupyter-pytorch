@@ -11,6 +11,11 @@ RUN rm cuda-keyring_1.1-1_all.deb
 RUN apt update
 RUN apt install -y cuda-toolkit-12-8
 
+# Install sudo and add jovyan to the sudoers with no password required
+RUN apt install -y sudo && \
+    echo "jovyan ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/jovyan && \
+    chmod 0440 /etc/sudoers.d/jovyan
+
 # Switch back to regular user before runtime
 USER ${NB_UID}
 WORKDIR /home/jovyan
