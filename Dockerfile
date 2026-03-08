@@ -5,7 +5,7 @@ FROM quay.io/jupyter/pytorch-notebook:cuda12-2025-08-18
 # Switch to root to perform system operations, e.g. apt install any extra dependencies
 USER root
 
-RUN apt install -y nvidia-cuda-toolkit
+RUN apt update && apt install -y nvidia-cuda-toolkit
 
 # Switch back to regular user before runtime
 USER ${NB_UID}
